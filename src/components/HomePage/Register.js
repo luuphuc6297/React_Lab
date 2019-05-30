@@ -11,7 +11,7 @@ import {
     AutoComplete,
 } from 'antd';
 
-const { Option } = Select;
+const {Option} = Select;
 const AutoCompleteOption = AutoComplete.Option;
 
 class Register extends React.Component {
@@ -31,7 +31,7 @@ class Register extends React.Component {
 
     handleConfirmBlur = e => {
         const value = e.target.value;
-        this.setState({ confirmDirty: this.state.confirmDirty || !!value });
+        this.setState({confirmDirty: this.state.confirmDirty || !!value});
     };
 
     compareToFirstPassword = (rule, value, callback) => {
@@ -46,7 +46,7 @@ class Register extends React.Component {
     validateToNextPassword = (rule, value, callback) => {
         const form = this.props.form;
         if (value && this.state.confirmDirty) {
-            form.validateFields(['confirm'], { force: true });
+            form.validateFields(['confirm'], {force: true});
         }
         callback();
     };
@@ -58,21 +58,21 @@ class Register extends React.Component {
         } else {
             autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
         }
-        this.setState({ autoCompleteResult });
+        this.setState({autoCompleteResult});
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
-        const { autoCompleteResult } = this.state;
+        const {getFieldDecorator} = this.props.form;
+        const {autoCompleteResult} = this.state;
 
         const formItemLayout = {
             labelCol: {
-                xs: { span: 24 },
-                sm: { span: 8 },
+                xs: {span: 24},
+                sm: {span: 5},
             },
             wrapperCol: {
-                xs: { span: 24 },
-                sm: { span: 16 },
+                xs: {span: 24},
+                sm: {span: 13},
             },
         };
         const tailFormItemLayout = {
@@ -81,16 +81,12 @@ class Register extends React.Component {
                     span: 24,
                     offset: 0,
                 },
-                sm: {
-                    span: 16,
-                    offset: 8,
-                },
             },
         };
         const prefixSelector = getFieldDecorator('prefix', {
             initialValue: '86',
         })(
-            <Select style={{ width: 70 }}>
+            <Select style={{width: 70}}>
                 <Option value="86">+86</Option>
                 <Option value="87">+87</Option>
             </Select>,
@@ -102,8 +98,8 @@ class Register extends React.Component {
 
         return (
 
-            <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-                <Icon type="user-add" size={100} color={'#fafafa'}/>
+            <Form {...formItemLayout} onSubmit={this.handleSubmit} style={{textAlign: "center"}}>
+                <div style={styles.title}>REGISTER</div>
                 <Form.Item label="E-mail">
                     {getFieldDecorator('email', {
                         rules: [
@@ -116,7 +112,7 @@ class Register extends React.Component {
                                 message: 'Please input your E-mail!',
                             },
                         ],
-                    })(<Input />)}
+                    })(<Input/>)}
                 </Form.Item>
                 <Form.Item label="Password" hasFeedback>
                     {getFieldDecorator('password', {
@@ -129,7 +125,7 @@ class Register extends React.Component {
                                 validator: this.validateToNextPassword,
                             },
                         ],
-                    })(<Input.Password />)}
+                    })(<Input.Password/>)}
                 </Form.Item>
                 <Form.Item label="Confirm Password" hasFeedback>
                     {getFieldDecorator('confirm', {
@@ -142,37 +138,37 @@ class Register extends React.Component {
                                 validator: this.compareToFirstPassword,
                             },
                         ],
-                    })(<Input.Password onBlur={this.handleConfirmBlur} />)}
+                    })(<Input.Password onBlur={this.handleConfirmBlur}/>)}
                 </Form.Item>
                 <Form.Item
                     label={
                         <span>
               Nickname&nbsp;
                             <Tooltip title="What do you want others to call you?">
-                <Icon type="question-circle-o" />
+                <Icon type="question-circle-o"/>
               </Tooltip>
             </span>
                     }
                 >
                     {getFieldDecorator('nickname', {
-                        rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
-                    })(<Input />)}
+                        rules: [{required: true, message: 'Please input your nickname!', whitespace: true}],
+                    })(<Input/>)}
                 </Form.Item>
                 <Form.Item label="Phone Number">
                     {getFieldDecorator('phone', {
-                        rules: [{ required: true, message: 'Please input your phone number!' }],
-                    })(<Input addonBefore={prefixSelector} style={{ width: '100%' }} />)}
+                        rules: [{required: true, message: 'Please input your phone number!'}],
+                    })(<Input addonBefore={prefixSelector} style={{width: '100%'}}/>)}
                 </Form.Item>
                 <Form.Item label="Website">
                     {getFieldDecorator('website', {
-                        rules: [{ required: true, message: 'Please input website!' }],
+                        rules: [{required: true, message: 'Please input website!'}],
                     })(
                         <AutoComplete
                             dataSource={websiteOptions}
                             onChange={this.handleWebsiteChange}
                             placeholder="website"
                         >
-                            <Input />
+                            <Input/>
                         </AutoComplete>,
                     )}
                 </Form.Item>
@@ -182,7 +178,7 @@ class Register extends React.Component {
                     })(
                         <Checkbox>
                             I have read the <a href="">agreement</a>
-                        </Checkbox>,
+                        </Checkbox>
                     )}
                 </Form.Item>
                 <Form.Item {...tailFormItemLayout}>
@@ -194,6 +190,18 @@ class Register extends React.Component {
         );
     }
 }
-export default Register = Form.create({ name: 'register' })(Register);
+
+const styles = ({
+    title: {
+        color: '#262626',
+        paddingTop: '5%',
+        marginBottom: '3%',
+        fontSize: 30,
+        fontWeight: 650,
+        textAlign: 'center'
+    }
+});
+
+export default Register = Form.create({name: 'register'})(Register);
 
           

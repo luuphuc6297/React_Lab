@@ -6,7 +6,7 @@ import Form from "antd/es/form";
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
 
-class Sider extends React.Component {
+class Siders extends React.Component {
     handleClick = e => {
         console.log('click ', e);
     };
@@ -77,4 +77,4 @@ class Sider extends React.Component {
     }
 }
 
-export default Sider = Form.create({ name: 'register' })(Sider);
+export default Siders = Form.create({ name: 'register' })(Siders);

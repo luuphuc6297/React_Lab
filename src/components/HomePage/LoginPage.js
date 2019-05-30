@@ -1,9 +1,10 @@
 import React from "react";
 import "antd/dist/antd.css";
 import "./HomePage.css";
-import { Form, Icon, Input, Button, Checkbox } from "antd";
+import Aux from '../../hoc/au'
+import {Form, Icon, Input, Button, Checkbox} from "antd";
 
-class HomePage extends React.Component {
+class LoginPage extends React.Component {
     handleSubmit = e => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
@@ -14,49 +15,73 @@ class HomePage extends React.Component {
     };
 
     render() {
-        const { getFieldDecorator } = this.props.form;
+        const {getFieldDecorator} = this.props.form;
         return (
-            <Form onSubmit={this.handleSubmit} className="login-form">
-                <Form.Item>
-                    {getFieldDecorator("username", {
-                        rules: [{ required: true, message: "Please input your username!" }]
-                    })(
-                        <Input
-                            prefix={<Icon type="user" style={{ color: "rgba(0,0,0,.25)" }} />}
-                            placeholder="Username"
-                        />
-                    )}
-                </Form.Item>
-                <Form.Item>
-                    {getFieldDecorator("password", {
-                        rules: [{ required: true, message: "Please input your Password!" }]
-                    })(
-                        <Input
-                            prefix={<Icon type="lock" style={{ color: "rgba(0,0,0,.25)" }} />}
-                            type="password"
-                            placeholder="Password"
-                        />
-                    )}
-                </Form.Item>
-                <Form.Item>
-                    {getFieldDecorator("remember", {
-                        valuePropName: "checked",
-                        initialValue: true
-                    })(<Checkbox>Remember me</Checkbox>)}
-                    <a className="login-form-forgot" href="">
-                        Forgot password
-                    </a>
-                    <Button
-                        type="primary"
-                        htmlType="submit"
-                        className="login-form-button"
-                    >
-                        Log in
-                    </Button>
-                    Or <a href="">register now!</a>
-                </Form.Item>
-            </Form>
+            <div style={{paddingBottom: "248px"}}>
+                <Aux>
+                    <div style={center}>
+                        <span style={title}>LOGIN</span>
+                        <Form onSubmit={this.handleSubmit} className="login-form">
+                            <Form.Item>
+                                {getFieldDecorator("username", {
+                                    rules: [{required: true, message: "Please input your username!"}]
+                                })(
+                                    <Input
+                                        prefix={<Icon type="user" style={{color: "rgba(0,0,0,.25)"}}/>}
+                                        placeholder="Username"
+                                    />
+                                )}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator("password", {
+                                    rules: [{required: true, message: "Please input your Password!"}]
+                                })(
+                                    <Input
+                                        prefix={<Icon type="lock" style={{color: "rgba(0,0,0,.25)"}}/>}
+                                        type="password"
+                                        placeholder="Password"
+                                    />
+                                )}
+                            </Form.Item>
+                            <Form.Item>
+                                {getFieldDecorator("remember", {
+                                    valuePropName: "checked",
+                                    initialValue: true
+                                })(<Checkbox>Remember me</Checkbox>)}
+                                <a className="login-form-forgot" href="">
+                                    Forgot password
+                                </a>
+                                <Button
+                                    type="primary"
+                                    htmlType="submit"
+                                    className="login-form-button"
+                                >
+                                    Log in
+                                </Button>
+                                Or <a href="/register">register now!</a>
+                            </Form.Item>
+                        </Form>
+                    </div>
+                </Aux>
+            </div>
+
         );
     }
 }
-export default HomePage = Form.create({ name: "normal_login" })(HomePage);
+
+const center = {
+    justifyContent: 'center',
+    alignItems: 'center',
+    display: 'flex',
+    flexDirection: 'column',
+};
+
+const title = {
+    color: '#262626',
+    marginTop: '5%',
+    marginBottom: '1%',
+    fontSize: 30,
+    fontWeight: 650,
+};
+
+export default LoginPage = Form.create({name: "normal_login"})(LoginPage);

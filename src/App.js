@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {Component} from 'react';import {
+    BrowserRouter as Router,
+    Route, Switch
+} from 'react-router-dom';
+
+import "antd/dist/antd.css";
 import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Register from './components/HomePage/Register'
+import  Layouts  from './components/Layout/Layouts';
+import LoginPage from './components/HomePage/LoginPage';
+import HomePageContent from "./components/HomePage/HomePageContent";
+import Cart from "./components/Cart/Cart";
+// import CarouselPage from './components/Carousel/Carousel';
+// // import Cards from './components/Card/Cards';
+// // import Sider from './components/Sider/Sider';
+// // import MenuCard from './components/Card/MenuCard';
+// // import ListView from "./components/Card/ListView";
+// // import Navigation from './components/Navigation/Navigation';
+// // import ListCartPage from './components/Header/ListCartPage';
+// // import Footer from './components/Footer/Footer';
+//
+class App extends Component {
+    render() {
+        return (
+            <div>
+                <Layouts>
+                    <Router>
+                            <Route exact path ='/' component = {HomePageContent}/>
+                            <Route  path ='/login' component = {LoginPage}/>
+                            <Route path = "/register" component = {Register}/>
+                            <Route path = '/cart' component = {Cart}/>
+                    </Router>
+                </Layouts>
+            </div>
+        )
+    }
 }
-
 export default App;
+
