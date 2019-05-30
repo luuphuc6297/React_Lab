@@ -6,7 +6,15 @@ const {Meta} = Card;
 
 class Cards extends React.Component {
     handleClickCart = () => {
-        localStorage.setItem('cart', this.props.itemm)
+        var cat=localStorage.getItem('cart')
+        try {
+            cat = JSON.parse(cat)
+        } catch (error) {
+            cat = []
+        }
+        
+        cat.push(this.props.itemm)
+        localStorage.setItem('cart', JSON.stringify(cat))
     }
     render() {
         return (

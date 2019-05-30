@@ -6,6 +6,7 @@ import Badge from '@material-ui/core/Badge';
 import { withStyles } from '@material-ui/core/styles';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 import Form from "antd/es/form";
+import { withRouter} from "react-router";
 
 const SubMenu = Menu.SubMenu;
 const MenuItemGroup = Menu.ItemGroup;
@@ -32,7 +33,7 @@ class NavHeader extends React.Component {
         });
     };
     handleClickCart = () => {
-        this.props.history.push('/login')
+        this.props.history.push('/cart')
     }
 
     render() {
@@ -145,5 +146,5 @@ class NavHeader extends React.Component {
         );
     }
 }
-export default NavHeader = Form.create({ name: 'register' })(NavHeader);
+export default NavHeader = Form.create({ name: 'register' })(withRouter(NavHeader));
           

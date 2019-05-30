@@ -14,15 +14,20 @@ import Description from "../Card/Descriptions";
 
 class Cart extends React.Component {
     handlePage = () => {
-        var temp = localStorage.getItem('cart');
-        var arr = [temp];
-        return arr
+        var cat = localStorage.getItem('cart');
+        try {
+            cat = JSON.parse(cat)
+        } catch (error) {
+            cat = []
+        }
+        
+        return cat
     };
     render() {
         return (
             <List
                 // grid={{
-                //     "gutter: 1,
+                //     "gutter": 1,
                 //     xs: 1,
                 //     sm: 2,
                 //     md: 4,

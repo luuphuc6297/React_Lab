@@ -23,14 +23,14 @@ class App extends Component {
     render() {
         return (
             <div>
-                <Layouts>
-                    <Router>
+                <Router>
+                    <Layouts>
                             <Route exact path ='/' component = {HomePageContent}/>
                             <Route  path ='/login' component = {LoginPage}/>
                             <Route path = "/register" component = {Register}/>
                             <Route path = '/cart' component = {Cart}/>
-                    </Router>
-                </Layouts>
+                    </Layouts>
+                </Router>
             </div>
         )
     }
